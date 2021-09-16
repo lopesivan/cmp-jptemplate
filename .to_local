@@ -1,0 +1,3 @@
+git remote -v
+git remote set-url origin file://${HOME}/git/cmp-jptemplate.git
+git remote -v
