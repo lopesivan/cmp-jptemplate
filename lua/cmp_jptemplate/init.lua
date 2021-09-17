@@ -16,16 +16,12 @@ function source:get_debug_name()
 end
 
 function source:complete(_, callback)
-  local items = {}
 
-  local snippets = {
-	'aaa',
-	'bbb',
-	'ccc',
-	'ddd',
-  }
+  local path = string.format(
+    "%s/%s",
+    vim.fn.expand('~/.config/nvim/jptemplate/'),
+    vim.bo.filetype)
 
-  local path = string.format("%s/%s", vim.fn.expand('~/.config/nvim/jptemplate/'),vim.bo.filetype)
   local paths = vim.fn.globpath(path, "*", true, true)
 
   local snippets = {}
@@ -34,7 +30,8 @@ function source:complete(_, callback)
 	table.insert(snippets, snippet)
   end
 
-  for key, value in pairs(snippets) do
+  local items = {}
+  for _, value in pairs(snippets) do
     local item = {
       word =  value,
       label =  value,
